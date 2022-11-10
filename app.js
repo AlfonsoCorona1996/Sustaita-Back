@@ -4,18 +4,18 @@ var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
-var port = process.env.PORT || 4201;
+var port = process.env.PORT || 4202;
 
 var cliente_route = require('./routes/cliente');
 var admin_route = require('./routes/admin');
 var cot_route = require('./routes/cotizaciones');
 
-mongoose.connect('mongodb://127.0.0.1:27017/susweb',(err, res)=>{
+mongoose.connect('mongodb://0.0.0.0:27017/susweb',(err, res)=>{
     if(err){
         console.log();
     }else{
-        app.listen(port,function(){
-            console.log('Servidor corriendo en el puerto ' + port);
+        var listener = app.listen(port, '0.0.0.0', function(){
+            console.log('Servidor corriendo en el puerto ' + port, listener.address().port, app.settings.env);
             
         });
     }
