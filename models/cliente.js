@@ -11,21 +11,23 @@ var ClienteSchema = Schema({
   password: { type: String, require: true },
   telefono: { type: String, require: false },
   rol:{type: String, require: true},
-  permisos: {
-    categorias: [
-      {
-        viewValue: { type: String, default: "" },
-        show: { type: Boolean, default: false },
-        sub: [
-          {
-            show: { type: Boolean, default: false },
-            viewValue: { type: String, default: "" },
-            route: { type: String, default: "" },
-          },
-        ],
-      },
-    ],
-  },
+  // permisos: {
+  //   categorias: 
+  //   [
+  //     {
+  //       viewValue: { type: String, default: "" },
+  //       show: { type: Boolean, default: false },
+  //       sub: [
+  //         {
+  //           show: { type: Boolean, default: false },
+  //           viewValue: { type: String, default: "" },
+  //           route: { type: String, default: "" },
+  //         },
+  //       ],
+  //     }
+  //   ]
+  // }
+  permisos: { type: JSON, require:true}
 });
 
 module.exports = mongoose.model("cliente", ClienteSchema);
