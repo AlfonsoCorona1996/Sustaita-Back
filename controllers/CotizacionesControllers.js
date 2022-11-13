@@ -33,9 +33,10 @@ const listar_cotizaciones = async function (req, res) {
   var data = req.body;
   var cot_arr = [];
   cot_arr = await cotizaciones.find({empresa:data.empresa});
+  console.log(data)
   if (cot_arr.length == 0) {
     res.status(200).send({
-        message: "No hay cotizaciones con la empresa ",
+        message: "No hay cotizaciones con la empresa " + data.empresa,
         data: undefined,
       });
   } else {
@@ -45,7 +46,7 @@ const listar_cotizaciones = async function (req, res) {
 
 const listar_cot_larga = async function (req, res) {
   var data = req.params;
-  var cot_arr = {};
+  var cot_arr = [];
 
   cot_arr = await cotizaciones.find({ folio: data.folio });
   if (cot_arr.length == 0) {

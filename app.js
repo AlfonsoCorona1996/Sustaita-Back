@@ -9,6 +9,8 @@ var port = process.env.PORT || 4202;
 var cliente_route = require('./routes/cliente');
 var admin_route = require('./routes/admin');
 var cot_route = require('./routes/cotizaciones');
+var sitio_route = require('./routes/sitio');
+var empresa_route = require('./routes/empresa');
 
 mongoose.connect('mongodb://0.0.0.0:27017/susweb',(err, res)=>{
     if(err){
@@ -35,5 +37,7 @@ app.use((req,res,next)=>{
 app.use('/api',cliente_route);
 app.use('/api',admin_route);
 app.use('/api',cot_route);
+app.use('/api',sitio_route);
+app.use('/api',empresa_route);
 
 module.exports = app;
