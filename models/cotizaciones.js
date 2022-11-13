@@ -19,7 +19,7 @@ var CotizacionSchema = Schema({
     vigencia: {type: Number, require: true},
     status: {type: String, require: true},
     contenido: {type: Object, require: false},
-    comentarios: {type: String, require: false},
+    comentarios: {type: String, require: false}
 });
 
 module.exports = mongoose.model('cotizaciones',CotizacionSchema);
