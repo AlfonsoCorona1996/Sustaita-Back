@@ -38,7 +38,6 @@ const listar_sitio = async function (req, res) {
     var data = req.body;
     var sitio_arr = [];
     sitio_arr = await sitio.find({empresa: data.empresa})
-    console.log(data)
     if (sitio_arr.length == 0) {
         res
           .status(200)
@@ -51,8 +50,27 @@ const listar_sitio = async function (req, res) {
       }
 };
 
+const listar_equipos = async function (req, res) {
+  var data = req.body;
+  var equipo_arr = [];
+  equipo_arr = await sitio.findOne({_id:data.sitio},{Equipos:true})
+  if (equipo_arr.length == 0) {
+      res
+        .status(200)
+        .send({
+          message: "No hay sitios para la empresa " + data.empresa,
+          data: undefined,
+        });
+    } else {
+      res.status(200).send({ data: equipo_arr });
+    }
+};
+
+
+
 
 module.exports = {
     registro_sitio,
-    listar_sitio
+    listar_sitio,
+    listar_equipos
 };
