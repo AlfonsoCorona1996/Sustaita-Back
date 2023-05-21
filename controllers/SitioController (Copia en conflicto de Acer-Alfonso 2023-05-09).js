@@ -68,6 +68,7 @@ const listar_equipos = async function (req, res) {
     }
 };
 
+
 const listar_refacciones = async (req,res) =>{
   try{
   var data = req.body;
