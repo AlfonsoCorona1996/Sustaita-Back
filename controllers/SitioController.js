@@ -39,7 +39,6 @@ const listar_sitio = async function (req, res) {
     var data = req.body;
     var sitio_arr = [];
     sitio_arr = await sitio.find({empresa: data.empresa},{_id:true, nombre:true})
-    console.log(sitio_arr)
     if (sitio_arr.length == 0) {
         res
           .status(200)
@@ -72,7 +71,6 @@ const listar_refacciones = async (req,res) =>{
   try{
   var data = req.body;
   var ref_arr = [];
-  console.log(req.body)
   ref_arr = await refaccion.find({ _id: { $in: data.refacciones } })
   // ref_arr = await refaccion.find({ _id: { $in: data.refacciones } }, { _id: 0 } )
   if (ref_arr.length == 0) {

@@ -11,7 +11,6 @@ const registro_servicio = async function (req, res) {
 
   //REGISTRO
   if (ser_arr.length == 0) {
-    console.log('hola')
     if (data.nombre) {
       var reg = await servicio.create(data);
       res.status(200).send({ data: reg });
