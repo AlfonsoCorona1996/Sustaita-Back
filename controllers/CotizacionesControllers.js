@@ -76,9 +76,14 @@ function getHigherFolio(oldFolio) {
 // ! Para los files
 const registro_cotizacion_files = async function (req, res) {
   const img_paths = []
+  console.log("leng" + req.files.archivos.length)
   // OBTENER DATA
-  for(const file of req.files.archivos){
-    img_paths.push(file.path.split('\\')[2]);
+  if (req.files.archivos.length == undefined){
+    img_paths.push(req.files.archivos.path.split('\\')[2])
+  }else{
+    for(const file of req.files.archivos){
+      img_paths.push(file.path.split('\\')[2]);
+    }
   }
 
   const name = img_paths;
