@@ -1,11 +1,13 @@
 "use strict";
 
 var cotizaciones = require("../models/cotizaciones");
+var cliente = require("../models/cliente")
 
 // ! Regristo de solicitud de cotizacion
 const registro_cotizacion = async function (req, res) {
   // OBTENER DATA
   var data = req.body;
+  console.log(data)
   // Encontrar el folio mas grande
   var HigherFolio = await cotizaciones
     .find({}, { folio: true })
@@ -121,14 +123,22 @@ const listar_cot_larga = async function (req, res) {
   var data = req.params;
   var cot_arr = [];
 
-  cot_arr = await cotizaciones.find({ folio: data.folio });
+  cot_arr = await cotizaciones.findOne({ folio: data.folio });
   if (cot_arr.length == 0) {
     res.status(200).send({
       message: "No hay cotizaciones con el folio " + data.folio,
       data: undefined,
     });
   } else {
-    res.status(200).send({ data: cot_arr });
+    var clientes_arr = [];
+    clientes_arr = await cliente.findOne({_id: cot_arr.atencion})
+    if(cot_arr.length == 0){
+      cot_arr.atencion = "desconocido"
+      res.status(200).send({ data: [cot_arr] });
+    }else{
+      cot_arr.atencion = clientes_arr.nombre + " " + clientes_arr.apellido
+      res.status(200).send({ data: [cot_arr] });
+    }
   }
 };
 
